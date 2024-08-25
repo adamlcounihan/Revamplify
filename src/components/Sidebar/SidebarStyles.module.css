@@ -1,5 +1,5 @@
 .sidebar {
-    width: 200px;
+    width: 220px;
     height: 100vh;
     background-color: var(--sidebar-color);
     color: var(--text-color);
@@ -74,6 +74,8 @@
 }
 
 .sidebar li {
+    display: flex;
+    align-items: center;
     margin: 15px 0;
     font-size: 1.1rem;
     cursor: pointer;
