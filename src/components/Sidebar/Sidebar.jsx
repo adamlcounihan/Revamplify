@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import styles from './SidebarStyles.module.css';
 import { MdHome, MdHistory, MdAccountCircle, MdOutlinePlaylistPlay, MdOutlinePersonOutline, MdAlbum, MdFavoriteBorder,
     MdOutlinePodcasts, MdOutlineMenuBook, MdOutlineNewReleases, MdInsertChartOutlined, MdOutlineMusicNote,
     MdOutlineSettings, MdHelpOutline, MdOutlineLineWeight} from "react-icons/md";
 
 const Sidebar = () => {
+    const [isPlaylistsOpen, setPlaylistsOpen] = useState(false);
+
+    const togglePlaylists = () => {
+        setPlaylistsOpen(!isPlaylistsOpen);
+    };
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.section}>
@@ -14,9 +21,36 @@ const Sidebar = () => {
                 </ul>
             </div>
             <div className={styles.section}>
-            <h3 className={styles.sectionHeading}>Library</h3>
+                <h3 className={styles.sectionHeading}>Library</h3>
                 <ul>
-                    <li><MdOutlinePlaylistPlay className={styles.icon}/>Playlists</li>
+                    <li onClick={togglePlaylists}>
+                        <MdOutlinePlaylistPlay className={styles.icon}/>Playlists
+                        <span className={`${styles.arrow} ${isPlaylistsOpen ? styles.open : ''}`}>▼</span>
+                    </li>
+                    {isPlaylistsOpen && (
+                        <ul className={styles.submenu}>
+                            <li>
+                                <div>2000s Mix</div>
+                                <div className={styles.playlistDescription}>by Spotify</div>
+                            </li>
+                            <li>
+                                <div>Your Top Songs 2023</div>
+                                <div className={styles.playlistDescription}>by Spotify</div>
+                            </li>
+                            <li>
+                                <div>Folk &amp; Acoustic Mix</div>
+                                <div className={styles.playlistDescription}>by Adam</div>
+                            </li>
+                            <li>
+                                <div>Happy Mix</div>
+                                <div className={styles.playlistDescription}>by Spotify</div>
+                            </li>
+                            <li>
+                                <div>Driving</div>
+                                <div className={styles.playlistDescription}>by John Smith</div>
+                            </li>
+                        </ul>
+                    )}
                     <li><MdOutlinePersonOutline className={styles.icon}/>Artists</li>
                     <li><MdAlbum className={styles.icon}/>Albums</li>
                     <li><MdFavoriteBorder className={styles.icon}/>Liked Songs</li>
