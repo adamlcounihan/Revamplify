@@ -1,19 +1,18 @@
 .sidebar {
     width: 220px;
-    height: 100vh;
-    background-color: var(--sidebar-color);
+    height: calc(100vh - 73px);
+    background-color: var(--navbar-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
     position: fixed;
-    top: 0;
+    top: 73px;
     left: 0;
     z-index: 1000;
     overflow: hidden;
     box-sizing: border-box;
     transition: overflow 0.3s ease;
-
+    border: 1px solid #535353;
 }
 
 .sidebar:hover {
@@ -49,7 +48,7 @@
 .section {
     width: 100%;
     border-bottom: 1px solid rgba(179, 179, 179, 0.44);
-    padding: 0 20px 20px 20px;
+    padding: 10px 20px 20px 20px;
 }
 
 .section:last-child {
