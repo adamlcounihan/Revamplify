@@ -8,7 +8,7 @@
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px solid #535353;
 }
 
@@ -45,4 +45,25 @@
 
 .searchInput::placeholder {
     color: var(--subtext-color);
+}
+
+.clearIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: var(--subtext-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.searchInput::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.searchInput::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
 }

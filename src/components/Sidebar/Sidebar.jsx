@@ -14,6 +14,7 @@ const Sidebar = () => {
     return (
         <div className={styles.sidebar}>
             <div className={styles.section}>
+                <h3 className={styles.sectionHeading}>Overview</h3>
                 <ul>
                     <li><MdHome className={styles.icon}/> Home</li>
                     <li><MdHistory className={styles.icon}/>History</li>
@@ -69,6 +70,7 @@ const Sidebar = () => {
                 </ul>
             </div>
             <div className={styles.section}>
+                <h3 className={styles.sectionHeading}>User Services</h3>
                 <ul>
                     <li><MdOutlineSettings className={styles.icon}/>Account Settings</li>
                     <li><MdHelpOutline className={styles.icon}/>Help &amp; Support</li>

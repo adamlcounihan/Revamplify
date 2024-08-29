@@ -1,9 +1,9 @@
 :root {
     --background-color: #121212;
-    --navbar-color: #032e12;
+    --navbar-color: #2a2a2a;
     --text-color: #ffffff;
     --subtext-color: #b3b3b3;
-    --link-hover-color: #0c5524;
+    --accent-color: #00FF59;
     --font-family: 'IBM Plex Sans';
 }
 
