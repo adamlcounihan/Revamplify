@@ -67,3 +67,25 @@
     width: 0;
     height: 0;
 }
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding-right: 30px;
+}
+
+.notificationIcon {
+    color: var(--text-color);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.profileIcon {
+    color: var(--text-color);
+    width: 30px;
+    cursor: pointer;
+    padding: 6px;
+    border: 2px solid var(--subtext-color);
+    border-radius: 50%;
+}

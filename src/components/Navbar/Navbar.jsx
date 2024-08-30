@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from './NavbarStyles.module.css';
-import { MdOutlineSearch, MdClose } from "react-icons/md";
+import { MdOutlineSearch, MdClose, MdOutlineNotifications, MdPersonOutline } from "react-icons/md";
 
 function Navbar() {
     const [searchValue, setSearchValue] = useState("");
@@ -32,6 +32,14 @@ function Navbar() {
                         onClick={handleClearSearch}
                     />
                 )}
+            </div>
+            <div className={styles.iconWrapper}>
+                <MdOutlineNotifications className={styles.notificationIcon}/>
+                <img
+                    src="src/assets/profile-img.webp"
+                    alt="profile icon"
+                    className={styles.profileIcon}
+                />
             </div>
         </div>
     );
