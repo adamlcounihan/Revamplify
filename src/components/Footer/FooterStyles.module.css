@@ -1,0 +1,94 @@
+.footer {
+    grid-area: footer;
+    background-color: var(--footer-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-top: 1px solid #535353;
+    height: 80px;
+}
+
+.leftSection, .centerSection, .rightSection {
+    display: flex;
+    align-items: center;
+}
+
+.leftSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.albumCover {
+    width: 50px;
+    height: 50px;
+}
+
+.trackInfo {
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.trackTitle {
+    font-size: 1rem;
+}
+
+.artistName {
+    font-size: 0.7rem;
+    color: var(--subtext-color);
+}
+
+.progressContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.currentTime {
+    font-size: 12px;
+    color: var(--subtext-color);
+    margin-right: 8px;
+}
+
+.trackProgress {
+    flex: 1;
+    margin: 0 8px;
+}
+
+.trackLength {
+    font-size: 12px;
+    color: var(--subtext-color);
+    margin-left: 8px;
+}
+
+.centerSection {
+    flex: 1;
+    justify-content: center;
+    gap: 20px;
+}
+
+.icon {
+    color: var(--text-color);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.playIcon {
+    color: var(--accent-color);
+    font-size: 40px;
+}
+
+.rightSection {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.volumeControl {
+    width: 100px;
+}

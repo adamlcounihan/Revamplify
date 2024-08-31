@@ -1,6 +1,5 @@
 .sidebar {
     grid-area: sidebar;
-    height: calc(100vh - 86px);
     background-color: var(--navbar-color);
     color: var(--text-color);
     display: flex;
