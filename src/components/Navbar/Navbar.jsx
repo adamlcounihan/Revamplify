@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from './NavbarStyles.module.css';
-import { MdOutlineSearch, MdClose, MdOutlineNotifications, MdPersonOutline } from "react-icons/md";
+import { MdOutlineSearch, MdClose, MdOutlineNotifications } from "react-icons/md";
 
 function Navbar() {
     const [searchValue, setSearchValue] = useState("");
@@ -10,13 +10,15 @@ function Navbar() {
     };
 
     return (
-        <div className={styles.navbar}>
-            <img
-                src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Full_Logo_RGB_Green.png"
-                alt="Spotify Logo"
-                className={styles.logo}
-            />
-            <div className={styles.searchWrapper}>
+        <nav className={styles.navbar}>
+            <a href="/" aria-label="Home">
+                <img
+                    src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Full_Logo_RGB_Green.png"
+                    alt="Spotify Logo"
+                    className={styles.logo}
+                />
+            </a>
+            <form className={styles.searchWrapper} role="search">
                 <input
                     className={styles.searchInput}
                     type="search"
@@ -25,23 +27,29 @@ function Navbar() {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
-                <MdOutlineSearch className={styles.searchIcon} />
+                <MdOutlineSearch className={styles.searchIcon} aria-hidden="true" />
                 {searchValue && (
-                    <MdClose
+                    <button
+                        type="button"
                         className={styles.clearIcon}
                         onClick={handleClearSearch}
-                    />
+                        aria-label="Clear search"
+                    >
+                        <MdClose />
+                    </button>
                 )}
-            </div>
-            <div className={styles.iconWrapper}>
-                <MdOutlineNotifications className={styles.notificationIcon}/>
+            </form>
+            <section className={styles.iconWrapper} aria-label="User navigation">
+                <button className={styles.notificationButton} aria-label="Notifications">
+                    <MdOutlineNotifications className={styles.notificationIcon} />
+                </button>
                 <img
                     src="src/assets/profile-img.webp"
                     alt="profile icon"
                     className={styles.profileIcon}
                 />
-            </div>
-        </div>
+            </section>
+        </nav>
     );
 }
 

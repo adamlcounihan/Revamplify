@@ -1,13 +1,8 @@
-import Sidebar from '../../components/Sidebar/Sidebar.jsx'
-
+import styles from "./HomeStyles.module.css"
 const Home = () => {
     return (
-        <div className="home-container">
-            <Sidebar />
-            <div className="main-content">
-
-            </div>
-        </div>
+        <main className={styles.home}>
+        </main>
     );
 };
 

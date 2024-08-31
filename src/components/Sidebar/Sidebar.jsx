@@ -12,17 +12,21 @@ const Sidebar = () => {
     };
 
     return (
-        <div className={styles.sidebar}>
-            <div className={styles.section}>
-                <h3 className={styles.sectionHeading}>Overview</h3>
+        <aside className={styles.sidebar}>
+            <section className={styles.section}>
+                <header>
+                    <h3 className={styles.sectionHeading}>Overview</h3>
+                </header>
                 <ul>
                     <li><MdHome className={styles.icon}/> Home</li>
                     <li><MdHistory className={styles.icon}/>History</li>
                     <li><MdAccountCircle className={styles.icon}/>Profile</li>
                 </ul>
-            </div>
-            <div className={styles.section}>
-                <h3 className={styles.sectionHeading}>Library</h3>
+            </section>
+            <section className={styles.section}>
+                <header>
+                    <h3 className={styles.sectionHeading}>Library</h3>
+                </header>
                 <ul>
                     <li onClick={togglePlaylists}>
                         <MdOutlinePlaylistPlay className={styles.icon}/>Playlists
@@ -58,9 +62,11 @@ const Sidebar = () => {
                     <li><MdOutlinePodcasts className={styles.icon}/>Your Podcasts</li>
                     <li><MdOutlineMenuBook className={styles.icon}/>Your Audiobooks</li>
                 </ul>
-            </div>
-            <div className={styles.section}>
-                <h3 className={styles.sectionHeading}>Discover</h3>
+            </section>
+            <section className={styles.section}>
+                <header>
+                    <h3 className={styles.sectionHeading}>Discover</h3>
+                </header>
                 <ul>
                     <li><MdOutlineNewReleases className={styles.icon}/>New Releases</li>
                     <li><MdInsertChartOutlined className={styles.icon}/>Charts</li>
@@ -68,16 +74,18 @@ const Sidebar = () => {
                     <li><MdOutlinePodcasts className={styles.icon}/>New Podcasts</li>
                     <li><MdOutlineMenuBook className={styles.icon}/>New Audiobooks</li>
                 </ul>
-            </div>
-            <div className={styles.section}>
-                <h3 className={styles.sectionHeading}>User Services</h3>
+            </section>
+            <section className={styles.section}>
+                <header>
+                    <h3 className={styles.sectionHeading}>User Services</h3>
+                </header>
                 <ul>
                     <li><MdOutlineSettings className={styles.icon}/>Account Settings</li>
                     <li><MdHelpOutline className={styles.icon}/>Help &amp; Support</li>
                     <li><MdOutlineLineWeight className={styles.icon}/>What&apos;s New</li>
                 </ul>
-            </div>
-        </div>
+            </section>
+        </aside>
     );
 };
 

@@ -1,0 +1,12 @@
+.layout {
+    display: grid;
+    grid-template-areas:
+        "navbar navbar"
+        "sidebar main";
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
