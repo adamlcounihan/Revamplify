@@ -76,11 +76,24 @@
     color: var(--text-color);
     font-size: 25px;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.icon:hover{
+    border-bottom: 1px solid var(--subtext-color);
+}
+
+.active {
+    color: var(--accent-color);
 }
 
 .playIcon {
     color: var(--accent-color);
     font-size: 40px;
+}
+
+.playIcon:hover {
+    border-bottom: 1px solid var(--subtext-color);
 }
 
 .rightSection {
