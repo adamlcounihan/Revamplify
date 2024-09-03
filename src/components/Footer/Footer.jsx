@@ -36,7 +36,7 @@ const Footer = () => {
                     <p className={styles.artistName}>Tame Impala</p>
                 </div>
                 <FaRegHeart
-                    className={`${styles.icon} ${isLiked ? styles.active : ''}`}
+                    className={`${styles.heartIcon} ${styles.icon} ${isLiked ? styles.active : ''}`}
                     onClick={() => setIsLiked(!isLiked)}
                 />
                 <div className={styles.progressContainer}>

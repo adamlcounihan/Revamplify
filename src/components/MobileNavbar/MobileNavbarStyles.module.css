@@ -1,0 +1,51 @@
+.mobileNavbar {
+    background-color: var(--footer-color);
+    align-items: center;
+    justify-content: space-around;
+    grid-area: mobileNavbar;
+    width: 100%;
+    border-top: 1px solid #535353;
+    display: none;
+}
+
+.navList {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 0;
+    transition: color 0.3s;
+}
+
+.navLink:hover .icon, .navLink:hover .label {
+    color: var(--subtext-color);
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.label {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .mobileNavbar {
+        display: flex;
+    }
+}

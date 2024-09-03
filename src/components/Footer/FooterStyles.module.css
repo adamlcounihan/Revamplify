@@ -3,10 +3,8 @@
     background-color: var(--footer-color);
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 0 20px;
     border-top: 1px solid #535353;
-    height: 80px;
 }
 
 .leftSection, .centerSection, .rightSection {
@@ -30,7 +28,6 @@
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    margin-right: 20px;
 }
 
 .trackTitle {
@@ -57,7 +54,6 @@
 
 .trackProgress {
     flex: 1;
-    margin: 0 8px;
 }
 
 .trackLength {
@@ -92,6 +88,12 @@
     font-size: 40px;
 }
 
+.heartIcon {
+    font-size: 18px;
+    min-width: 18px;
+    min-height: 18px;
+}
+
 .playIcon:hover {
     border-bottom: 1px solid var(--subtext-color);
 }
@@ -104,4 +106,32 @@
 
 .volumeControl {
     width: 100px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .rightSection {
+        display: none;
+    }
+
+    .trackTitle {
+        font-size: 0.7rem;
+    }
+
+    .artistName {
+        font-size: 0.5rem;
+    }
+
+    .trackProgress {
+
+    }
+}
+
+@media (max-width: 400px) {
+    .trackProgress {
+        max-width: 100px;
+    }
 }

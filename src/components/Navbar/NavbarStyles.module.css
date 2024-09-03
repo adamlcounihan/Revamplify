@@ -102,3 +102,12 @@
 .profileIcon:hover {
     border-bottom: 1px solid var(--subtext-color);
 }
+
+@media (max-width: 768px) {
+    .navbar{
+        justify-content: space-between;
+    }
+    .searchWrapper {
+        display: none;
+    }
+}
