@@ -1,4 +1,4 @@
-# Spotiredux
+# Revamplify
 
 ## Overview
 
