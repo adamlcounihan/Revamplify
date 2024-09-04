@@ -44,7 +44,7 @@ function Navbar() {
                     <MdOutlineNotifications className={styles.notificationIcon} />
                 </button>
                 <img
-                    src="src/assets/profile-img.webp"
+                    src="/profile-img.webp"
                     alt="profile icon"
                     className={styles.profileIcon}
                 />

@@ -30,7 +30,7 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <section className={styles.leftSection}>
-                <img src="src/assets/TameImpala.webp" alt="Album Cover" className={styles.albumCover} />
+                <img src="/TameImpala.webp" alt="Album Cover" className={styles.albumCover} />
                 <div className={styles.trackInfo}>
                     <p className={styles.trackTitle}>Borderline</p>
                     <p className={styles.artistName}>Tame Impala</p>
