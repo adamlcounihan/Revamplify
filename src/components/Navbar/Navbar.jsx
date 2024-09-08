@@ -11,13 +11,16 @@ function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-            <a href="/" aria-label="Home">
-                <img
-                    src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Full_Logo_RGB_Green.png"
-                    alt="Spotify Logo"
-                    className={styles.logo}
-                />
-            </a>
+            <div className={styles.logoWrapper}>
+                <a href="/" aria-label="Home" className={styles.logoWrapper}>
+                    <img
+                        src="/logo.png"
+                        alt="Spotify Logo"
+                        className={styles.logo}
+                    />
+                    <span className={styles.brandText}>Revamplify</span>
+                </a>
+            </div>
             <form className={styles.searchWrapper} role="search">
                 <input
                     className={styles.searchInput}
