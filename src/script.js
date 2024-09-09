@@ -1,4 +1,4 @@
-const clientId = "88989d0295ae44fa80e84291a5622b80";
+export const clientId = "88989d0295ae44fa80e84291a5622b80";
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
@@ -7,7 +7,7 @@ if (!code) {
 } else {
     const accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
-    populateUI(profile);
+    localStorage.setItem("profile", JSON.stringify(profile)); // Store profile in localStorage
 }
 
 export async function redirectToAuthCodeFlow(clientId) {
@@ -62,7 +62,15 @@ export async function getAccessToken(clientId, code) {
         body: params
     });
 
-    const { access_token } = await result.json();
+    const response = await result.json();
+
+    if (response.error) {
+        console.error("Error during token retrieval:", response.error);
+        throw new Error(response.error);
+    }
+
+    const { access_token } = response;
+
     return access_token;
 }
 
@@ -72,9 +80,4 @@ async function fetchProfile(token) {
     });
 
     return await result.json();
-}
-
-function populateUI(profile) {
-    console.log("Profile Name:", profile.display_name);
-    console.log("Profile Name:", profile.email);
 }
