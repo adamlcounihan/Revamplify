@@ -1,0 +1,76 @@
+.loginPage {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1db954, #191414);
+    color: #fff;
+}
+
+.loginBox {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1db954;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #b3b3b3;
+}
+
+.loginButton {
+    background-color: #1db954;
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loginButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.5);
+}
+
+@media (max-width: 768px) {
+    .loginBox {
+        padding: 30px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .loginButton {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    .logo {
+        width: 100px;
+    }
+}
