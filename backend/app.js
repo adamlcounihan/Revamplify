@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 
-const redirect_uri = 'http://localhost:5000/callback';
+const redirect_uri = process.env.SPOTIFY_URI;
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 

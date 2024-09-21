@@ -1,5 +1,5 @@
 import styles from './LoginPageStyles.module.css';
-import logo from './logo.png';
+import logo from '/logo.png';
 
 const LoginPage = () => {
     const handleLogin = () => {
