@@ -9,32 +9,37 @@ import styles from './MainPageStyles.module.css';
 
 const MainPage = () => {
     const [spotifyData, setSpotifyData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const accessToken = params.get('access_token');
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/spotify-data', {
+                    withCredentials: true,
+                });
+                setSpotifyData(response.data);
+            } catch (error) {
+                console.error('Error fetching Spotify data:', error);
+                setError('Failed to fetch Spotify data. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
+        };
 
-        if (accessToken) {
-            axios
-                .get('https://api.spotify.com/v1/me', {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                })
-                .then((response) => {
-                    setSpotifyData(response.data);
-                })
-                .catch((error) => console.error('Error fetching Spotify data:', error));
-        }
+        fetchData();
     }, []);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div className={styles.error}>{error}</div>;
 
     return (
         <div className={styles.mainPage}>
-            <Navbar className={styles.nav}/>
-            <Sidebar className={styles.aside}/>
+            <Navbar className={styles.nav} />
+            <Sidebar className={styles.aside} />
             <Home className={styles.main} spotifyData={spotifyData} />
-            <Footer className={styles.footer}/>
-            <MobileNavbar className={styles.mobileNavbar}/>
+            <Footer className={styles.footer} />
+            <MobileNavbar className={styles.mobileNavbar} />
         </div>
     );
 };
