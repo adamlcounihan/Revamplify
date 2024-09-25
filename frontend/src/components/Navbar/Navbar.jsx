@@ -1,12 +1,33 @@
 import { useState } from "react";
 import styles from './NavbarStyles.module.css';
-import { MdOutlineSearch, MdClose, MdOutlineNotifications } from "react-icons/md";
+import { MdOutlineSearch, MdClose, MdOutlineNotifications, MdLogout } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
     const [searchValue, setSearchValue] = useState("");
+    const navigate = useNavigate();
 
     const handleClearSearch = () => {
         setSearchValue("");
+    };
+
+    // Logout function
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/logout', {
+                method: 'GET',
+                credentials: 'include',
+            });
+
+            if (response.ok) {
+                console.log('Logout successful');
+                navigate('/');
+            } else {
+                console.error('Logout failed:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+        }
     };
 
     return (
@@ -51,6 +72,13 @@ function Navbar() {
                     alt="profile icon"
                     className={styles.profileIcon}
                 />
+                <button
+                    className={styles.logoutButton}
+                    onClick={handleLogout}
+                    aria-label="Logout"
+                >
+                    <MdLogout />
+                </button>
             </section>
         </nav>
     );

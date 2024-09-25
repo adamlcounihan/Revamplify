@@ -6,10 +6,14 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
+
 app.use(cors({
-    origin: 'http://localhost:5173', // Frontend URL
-    credentials: true, // Enable cookies to be sent from frontend
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
+
 app.use(cookieParser());
 
 const redirect_uri = process.env.SPOTIFY_URI;
@@ -137,11 +141,12 @@ app.get('/spotify-data', async (req, res) => {
     }
 });
 
-// Logout route: Clears the access and refresh tokens
+// Route to clear the access and refresh token and logout
 app.get('/logout', (req, res) => {
-    res.clearCookie('spotify_access_token');
-    res.clearCookie('spotify_refresh_token');
-    res.redirect('http://localhost:5173/');
+    res.clearCookie('spotify_access_token', { path: '/' });
+    res.clearCookie('spotify_refresh_token', { path: '/' });
+
+    res.json({ message: 'Logout successful' });
 });
 
 // Start the server
