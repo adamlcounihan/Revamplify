@@ -141,26 +141,6 @@ app.get('/spotify-data', async (req, res) => {
     }
 });
 
-app.get('/check-auth', (req, res) => {
-    const access_token = req.cookies.spotify_access_token;
-
-    if (!access_token) {
-        return res.status(401).json({ authenticated: false });
-    }
-
-    axios.get('https://api.spotify.com/v1/me', {
-        headers: {
-            Authorization: `Bearer ${access_token}`,
-        },
-    })
-        .then(response => {
-            res.json({ authenticated: true });
-        })
-        .catch(error => {
-            res.status(401).json({ authenticated: false });
-        });
-});
-
 // Route to clear the access and refresh token and logout
 app.get('/logout', (req, res) => {
     res.clearCookie('spotify_access_token', { path: '/' });
