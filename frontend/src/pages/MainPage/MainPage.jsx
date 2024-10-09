@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../../components/Footer/Footer.jsx';
 import MobileNavbar from '../../components/MobileNavbar/MobileNavbar.jsx';
@@ -11,6 +12,7 @@ const MainPage = () => {
     const [spotifyData, setSpotifyData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,7 +33,16 @@ const MainPage = () => {
     }, []);
 
     if (loading) return <div>Loading...</div>;
-    if (error) return <div className={styles.error}>{error}</div>;
+    if (error) return (
+        <div className={styles.error}>
+            <div className={styles.messageContainer}>
+                {error}
+                <button className={styles.retryButton} onClick={() => navigate("/")}>
+                    Return to Login Page
+                </button>
+            </div>
+        </div>
+    );
 
     return (
         <div className={styles.mainPage}>

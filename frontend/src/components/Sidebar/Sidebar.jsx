@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './SidebarStyles.module.css';
-import { MdHome, MdHistory, MdAccountCircle, MdOutlinePlaylistPlay, MdOutlinePersonOutline, MdAlbum, MdFavoriteBorder,
+import { MdHome, MdHistory, MdOutlinePlaylistPlay, MdOutlinePersonOutline, MdAlbum, MdFavoriteBorder,
     MdOutlinePodcasts, MdOutlineMenuBook, MdOutlineNewReleases, MdInsertChartOutlined, MdOutlineMusicNote,
     MdOutlineSettings, MdHelpOutline, MdOutlineLineWeight} from "react-icons/md";
 
@@ -15,19 +15,11 @@ const Sidebar = () => {
         <aside className={styles.sidebar}>
             <section className={styles.section}>
                 <header>
-                    <h3 className={styles.sectionHeading}>Overview</h3>
-                </header>
-                <ul>
-                    <li><MdHome className={styles.icon}/> Home</li>
-                    <li><MdHistory className={styles.icon}/>History</li>
-                    <li><MdAccountCircle className={styles.icon}/>Profile</li>
-                </ul>
-            </section>
-            <section className={styles.section}>
-                <header>
                     <h3 className={styles.sectionHeading}>Library</h3>
                 </header>
+
                 <ul>
+                    <li><MdHome className={styles.icon}/> Home</li>
                     <li onClick={togglePlaylists}>
                         <MdOutlinePlaylistPlay className={styles.icon}/>Playlists
                         <span className={`${styles.arrow} ${isPlaylistsOpen ? styles.open : ''}`}>▼</span>
@@ -61,6 +53,7 @@ const Sidebar = () => {
                     <li><MdFavoriteBorder className={styles.icon}/>Liked Songs</li>
                     <li><MdOutlinePodcasts className={styles.icon}/>Your Podcasts</li>
                     <li><MdOutlineMenuBook className={styles.icon}/>Your Audiobooks</li>
+                    <li><MdHistory className={styles.icon}/>Listening History</li>
                 </ul>
             </section>
             <section className={styles.section}>
