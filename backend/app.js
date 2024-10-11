@@ -9,9 +9,12 @@ require('dotenv').config();
 
 const app = express();
 
+const isProduction = process.env.NODE_ENV === 'production';
+const frontendUrl = isProduction ? process.env.PROD_FRONTEND_URL : process.env.FRONTEND_URL;
+
 // CORS configuration
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: frontendUrl,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -32,7 +35,7 @@ const limiter = rateLimit({
 // Apply the rate limiter to all requests
 app.use(limiter);
 
-const redirect_uri = process.env.SPOTIFY_URI;
+const redirect_uri = isProduction ? process.env.PROD_SPOTIFY_URI : process.env.SPOTIFY_URI;
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
@@ -60,7 +63,6 @@ const checkTokenValidity = (req, res, next) => {
 // Function to refresh the access token using the refresh token
 const refreshAccessToken = async (refresh_token, req, res, next) => {
     const tokenUrl = 'https://accounts.spotify.com/api/token';
-    const isProduction = process.env.NODE_ENV === 'production';
 
     const data = querystring.stringify({
         grant_type: 'refresh_token',
@@ -104,7 +106,7 @@ app.get('/login', (req, res) => {
     const access_token = req.cookies.spotify_access_token;
 
     if (access_token) {
-        return res.redirect('http://localhost:5173/main');
+        return res.redirect(`${frontendUrl}/main`);
     }
 
     const scope = 'user-read-private user-read-email';
@@ -122,7 +124,6 @@ app.get('/login', (req, res) => {
 app.get('/callback', async (req, res) => {
     const code = req.query.code || null;
     const tokenUrl = 'https://accounts.spotify.com/api/token';
-    const isProduction = process.env.NODE_ENV === 'production';
 
     const data = querystring.stringify({
         grant_type: 'authorization_code',
@@ -165,7 +166,7 @@ app.get('/callback', async (req, res) => {
             maxAge: expires_in * 1000,
         });
 
-        res.redirect('http://localhost:5173/main');
+        res.redirect(`${frontendUrl}/main`);
     } catch (error) {
         console.error('Error during Spotify authentication.');
         res.status(500).send('Error during Spotify authentication');
@@ -175,7 +176,6 @@ app.get('/callback', async (req, res) => {
 // Route to refresh access token using refresh token
 app.get('/refresh-token', async (req, res) => {
     const refresh_token = req.cookies.spotify_refresh_token;
-    const isProduction = process.env.NODE_ENV === 'production';
 
     if (!refresh_token) {
         return res.status(401).json({ error: 'No refresh token found' });

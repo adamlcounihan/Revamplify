@@ -9,11 +9,13 @@ function Navbar() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [hoveredIcon, setHoveredIcon] = useState(null);
     const navigate = useNavigate();
+    const isProduction = process.env.NODE_ENV === 'production';
+    const backendUrl = isProduction ? process.env.PROD_BACKEND_URL : 'http://localhost:5000';
 
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/spotify-data', {
+                const response = await fetch(`${backendUrl}/spotify-data`, {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -38,7 +40,7 @@ function Navbar() {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:5000/logout', {
+            const response = await fetch(`${backendUrl}/logout`, {
                 method: 'GET',
                 credentials: 'include',
             });

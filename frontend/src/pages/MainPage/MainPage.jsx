@@ -13,11 +13,13 @@ const MainPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const isProduction = process.env.NODE_ENV === 'production';
+    const backendUrl = isProduction ? process.env.PROD_BACKEND_URL : 'http://localhost:5000';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/spotify-data', {
+                const response = await axios.get(`${backendUrl}/spotify-data`, {
                     withCredentials: true,
                 });
                 setSpotifyData(response.data);

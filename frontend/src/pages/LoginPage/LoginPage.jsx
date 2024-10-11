@@ -1,9 +1,11 @@
 import styles from './LoginPageStyles.module.css';
 import logo from '/logo.png';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const backendUrl = isProduction ? process.env.PROD_BACKEND_URL : 'http://localhost:5000';
 const LoginPage = () => {
     const handleLogin = () => {
-        window.location.href = 'http://localhost:5000/login';
+        window.location.href = `${backendUrl}/login`;
     };
 
     return (
