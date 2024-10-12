@@ -13,8 +13,8 @@ const MainPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const isProduction = process.env.NODE_ENV === 'production';
-    const backendUrl = isProduction ? process.env.PROD_BACKEND_URL : 'http://localhost:5000';
+    const isProduction = import.meta.env.MODE === 'production';
+    const backendUrl = isProduction ? import.meta.env.VITE_PROD_BACKEND_URL : 'http://localhost:5000';
 
     useEffect(() => {
         const fetchData = async () => {

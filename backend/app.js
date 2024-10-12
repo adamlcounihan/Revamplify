@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express();
 
 const isProduction = process.env.NODE_ENV === 'production';
-const frontendUrl = isProduction ? process.env.PROD_FRONTEND_URL : process.env.FRONTEND_URL;
+const frontendUrl = isProduction ? process.env.PROD_FRONTEND_URL: 'http://localhost:5173';
 
 // CORS configuration
 app.use(cors({
