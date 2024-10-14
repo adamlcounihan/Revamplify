@@ -228,8 +228,11 @@ app.get('/spotify-data', checkTokenValidity, async (req, res) => {
 
         res.json(spotifyResponse.data);
     } catch (error) {
-        console.error('Error fetching data from Spotify.');
-        res.status(500).json({ error: 'Error fetching data from Spotify' });
+        console.error('Error fetching data from Spotify:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching data from Spotify';
+        res.status(status).json({ error: errorMessage });
     }
 });
 
