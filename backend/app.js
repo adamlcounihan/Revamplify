@@ -83,14 +83,14 @@ const refreshAccessToken = async (refresh_token, req, res, next) => {
         res.cookie('spotify_access_token', access_token, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: expires_in * 1000,
         });
 
         res.cookie('spotify_token_expiry', expiration_time, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: expires_in * 1000,
         });
 
@@ -148,21 +148,21 @@ app.get('/callback', async (req, res) => {
         res.cookie('spotify_access_token', access_token, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: expires_in * 1000,
         });
 
         res.cookie('spotify_refresh_token', refresh_token, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: 30 * 24 * 60 * 60 * 1000,
         });
 
         res.cookie('spotify_token_expiry', expiration_time, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: expires_in * 1000,
         });
 
@@ -199,14 +199,14 @@ app.get('/refresh-token', async (req, res) => {
         res.cookie('spotify_access_token', access_token, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: expires_in * 1000,
         });
 
         res.cookie('spotify_token_expiry', expiration_time, {
             httpOnly: true,
             secure: isProduction,
-            sameSite: 'none',
+            sameSite: isProduction ? 'None' : 'Lax',
             maxAge: expires_in * 1000,
         });
 
