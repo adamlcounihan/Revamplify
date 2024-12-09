@@ -245,6 +245,24 @@ app.get('/logout', (req, res) => {
     res.json({ message: 'Logout successful' });
 });
 
+app.get('/spotify-playlists', checkTokenValidity, async (req, res) => {
+    const access_token = req.cookies.spotify_access_token;
+
+    try {
+        const spotifyResponse = await axios.get('https://api.spotify.com/v1/me/playlists', {
+            headers: { Authorization: `Bearer ${access_token}` },
+        });
+
+        res.json(spotifyResponse.data.items); // Send playlists
+    } catch (error) {
+        console.error('Error fetching playlists from Spotify:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching playlists from Spotify';
+        res.status(status).json({ error: errorMessage });
+    }
+});
+
 // Start the server
 app.listen(5000, () => {
     console.log('Backend server running on port 5000');
