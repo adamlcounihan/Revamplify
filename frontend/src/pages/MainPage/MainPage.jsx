@@ -11,6 +11,8 @@ import styles from './MainPageStyles.module.css';
 const MainPage = () => {
     const [spotifyData, setSpotifyData] = useState(null);
     const [artistFollowingCount, setArtistFollowingCount] = useState(0);
+    const [topArtist, setTopArtist] = useState(null);
+    const [topTrack, setTopTrack] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -20,15 +22,29 @@ const MainPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // Fetch basic Spotify data
                 const spotifyResponse = await axios.get(`${backendUrl}/spotify-data`, {
                     withCredentials: true,
                 });
                 setSpotifyData(spotifyResponse.data);
 
+                // Fetch artist following count
                 const followingResponse = await axios.get(`${backendUrl}/spotify-following`, {
                     withCredentials: true,
                 });
                 setArtistFollowingCount(followingResponse.data.followingCount);
+
+                // Fetch top artist
+                const topArtistResponse = await axios.get(`${backendUrl}/spotify-top-artist`, {
+                    withCredentials: true,
+                });
+                setTopArtist(topArtistResponse.data);
+
+                // Fetch top track
+                const topTrackResponse = await axios.get(`${backendUrl}/spotify-top-track`, {
+                    withCredentials: true,
+                });
+                setTopTrack(topTrackResponse.data);
             } catch (error) {
                 console.error('Error fetching Spotify data:', error);
                 setError('Failed to fetch Spotify data. Please try again later.');
@@ -56,7 +72,13 @@ const MainPage = () => {
         <div className={styles.mainPage}>
             <Navbar className={styles.nav} />
             <Sidebar className={styles.aside} />
-            <Home className={styles.main} spotifyData={spotifyData} artistFollowingCount={artistFollowingCount} />
+            <Home
+                className={styles.main}
+                spotifyData={spotifyData}
+                artistFollowingCount={artistFollowingCount}
+                topArtist={topArtist}
+                topTrack={topTrack}
+            />
             <Footer className={styles.footer} />
             <MobileNavbar className={styles.mobileNavbar} />
         </div>

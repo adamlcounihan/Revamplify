@@ -13,10 +13,11 @@
     height: 250px;
     background: var(--navbar-color);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     overflow: hidden;
     border-radius: 10px;
+    padding: 0 20px;
 }
 
 .profileImage {
@@ -95,4 +96,33 @@
     font-size: 24px;
     color: white;
     background-color: #181818;
+}
+
+.topSectionsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.topArtistContainer, .topTrackContainer {
+    margin: 0 10px;
+    width: 120px;
+    text-align: center;
+}
+
+.topArtistLabel, .topTrackLabel {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.artistImage, .trackImage {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
 }
