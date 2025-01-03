@@ -69,6 +69,11 @@
     text-decoration: underline;
 }
 
+.copyright {
+    margin-top: 40px;
+    margin-bottom: -20px;
+    color: var(--subtext-color);
+}
 
 @media (max-width: 768px) {
     .loginBox {
@@ -92,5 +97,9 @@
 
     .logo {
         width: 100px;
+    }
+
+    .copyright {
+        margin-bottom: 0;
     }
 }
