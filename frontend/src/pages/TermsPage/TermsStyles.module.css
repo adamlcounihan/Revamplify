@@ -43,6 +43,12 @@
     text-decoration: underline;
 }
 
+.copyright {
+    margin-top: 40px;
+    color: var(--subtext-color);
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .title {
         font-size: 2rem;

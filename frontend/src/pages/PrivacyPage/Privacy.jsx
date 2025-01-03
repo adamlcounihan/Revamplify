@@ -1,5 +1,8 @@
 import styles from './PrivacyStyles.module.css';
 
+const currentYear = new Date().getFullYear();
+const creationYear = 2024;
+
 const Privacy = () => {
     return (
         <div className={styles.privacyContainer}>
@@ -89,6 +92,13 @@ const Privacy = () => {
                     updated "Last Updated" date. We encourage you to review this policy periodically to stay informed
                     about how we are protecting your information.
                 </p>
+
+                <section className={styles.copyright}>
+                    <p>
+                        &copy; {creationYear}{currentYear > creationYear ? `–${currentYear}` : ''} Adam Counihan <br/>
+                        All Rights Reserved
+                    </p>
+                </section>
             </div>
         </div>
     );

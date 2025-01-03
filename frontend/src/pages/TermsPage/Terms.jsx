@@ -1,5 +1,8 @@
 import styles from './TermsStyles.module.css';
 
+const currentYear = new Date().getFullYear();
+const creationYear = 2024;
+
 const Terms = () => {
     return (
         <div className={styles.termsContainer}>
@@ -40,8 +43,12 @@ const Terms = () => {
                     Website relies on Spotify&apos;s API to retrieve user data after you grant access.
                 </p>
                 <p>
-                    By using this feature, you agree to Spotify&apos;s <a href="https://www.spotify.com/uk/legal/end-user-agreement/" target="_blank" className={styles.link}>Terms of Service</a> and
-                    <a href="https://www.spotify.com/uk/legal/privacy-policy/" target="_blank" className={styles.link}> Privacy Policy</a>, and you acknowledge that the Website does not control how
+                    By using this feature, you agree to Spotify&apos;s <a
+                    href="https://www.spotify.com/uk/legal/end-user-agreement/" target="_blank" className={styles.link}>Terms
+                    of Service</a> and
+                    <a href="https://www.spotify.com/uk/legal/privacy-policy/" target="_blank"
+                       className={styles.link}> Privacy Policy</a>, and you acknowledge that the Website does not
+                    control how
                     Spotify handles your personal data. The Website only receives the data necessary
                     to provide the services and functionalities you use.
                 </p>
@@ -79,6 +86,13 @@ const Terms = () => {
                     and Wales. Any disputes arising in connection with these Terms shall be subject
                     to the exclusive jurisdiction of the courts of England and Wales.
                 </p>
+
+                <section className={styles.copyright}>
+                    <p>
+                        &copy; {creationYear}{currentYear > creationYear ? `–${currentYear}` : ''} Adam Counihan <br/>
+                        All Rights Reserved
+                    </p>
+                </section>
             </div>
         </div>
     );
