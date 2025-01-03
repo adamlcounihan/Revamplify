@@ -10,6 +10,7 @@ import styles from './MainPageStyles.module.css';
 
 const MainPage = () => {
     const [spotifyData, setSpotifyData] = useState(null);
+    const [artistFollowingCount, setArtistFollowingCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -19,10 +20,15 @@ const MainPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${backendUrl}/spotify-data`, {
+                const spotifyResponse = await axios.get(`${backendUrl}/spotify-data`, {
                     withCredentials: true,
                 });
-                setSpotifyData(response.data);
+                setSpotifyData(spotifyResponse.data);
+
+                const followingResponse = await axios.get(`${backendUrl}/spotify-following`, {
+                    withCredentials: true,
+                });
+                setArtistFollowingCount(followingResponse.data.followingCount);
             } catch (error) {
                 console.error('Error fetching Spotify data:', error);
                 setError('Failed to fetch Spotify data. Please try again later.');
@@ -50,7 +56,7 @@ const MainPage = () => {
         <div className={styles.mainPage}>
             <Navbar className={styles.nav} />
             <Sidebar className={styles.aside} />
-            <Home className={styles.main} spotifyData={spotifyData} />
+            <Home className={styles.main} spotifyData={spotifyData} artistFollowingCount={artistFollowingCount} />
             <Footer className={styles.footer} />
             <MobileNavbar className={styles.mobileNavbar} />
         </div>

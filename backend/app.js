@@ -109,7 +109,7 @@ app.get('/login', (req, res) => {
         return res.redirect(`${frontendUrl}/main`);
     }
 
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-read-private user-read-email user-follow-read';
     const authUrl = `https://accounts.spotify.com/authorize?${querystring.stringify({
         response_type: 'code',
         client_id,
@@ -259,6 +259,28 @@ app.get('/spotify-playlists', checkTokenValidity, async (req, res) => {
 
         const status = error.response?.status || 500;
         const errorMessage = error.response?.data?.error?.message || 'Error fetching playlists from Spotify';
+        res.status(status).json({ error: errorMessage });
+    }
+});
+
+app.get('/spotify-following', checkTokenValidity, async (req, res) => {
+    const access_token = req.cookies.spotify_access_token;
+
+    try {
+        // Fetch the list of artists the user is following
+        const spotifyResponse = await axios.get('https://api.spotify.com/v1/me/following?type=artist', {
+            headers: { Authorization: `Bearer ${access_token}` },
+        });
+
+        // The response contains an array of artists the user follows, we return the count
+        const followingCount = spotifyResponse.data.artists.items.length;
+
+        res.json({ followingCount });
+    } catch (error) {
+        console.error('Error fetching followed artists:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching followed artists';
         res.status(status).json({ error: errorMessage });
     }
 });
