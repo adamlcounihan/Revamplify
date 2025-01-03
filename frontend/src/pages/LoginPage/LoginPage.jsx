@@ -18,6 +18,11 @@ const LoginPage = () => {
                 <button className={styles.loginButton} onClick={handleLogin}>
                     Log In with Spotify
                 </button>
+                <p className={styles.notice}>
+                    By logging in, you agree to our{' '}
+                    <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.link}>Terms and Conditions</a> and{' '}
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.link}>Privacy Policy</a>.
+                </p>
             </div>
         </div>
     );
