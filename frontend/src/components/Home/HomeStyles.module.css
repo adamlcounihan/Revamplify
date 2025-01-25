@@ -126,3 +126,65 @@
     border-radius: 8px;
     object-fit: cover;
 }
+
+@media (max-width: 768px) {
+    .homeContainer {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .profileBanner {
+        flex-direction: column;
+        height: auto;
+        width: auto;
+        padding: 20px;
+    }
+
+    .profileImage {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .profileInfo {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .welcomeMessage {
+        font-size: 22px;
+    }
+
+    .followers, .following {
+        font-size: 14px;
+    }
+
+    .topSectionsContainer {
+        align-items: center;
+        position: static;
+        transform: none;
+        margin-top: 10px;
+    }
+
+    .topArtistContainer, .topTrackContainer {
+        margin: 10px 0;
+    }
+
+    .artistImage, .trackImage {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .topArtistLabel, .topTrackLabel {
+        font-size: 16px;
+    }
+}
