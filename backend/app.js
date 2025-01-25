@@ -109,7 +109,7 @@ app.get('/login', (req, res) => {
         return res.redirect(`${frontendUrl}/main`);
     }
 
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-read-private user-read-email user-follow-read user-top-read';
     const authUrl = `https://accounts.spotify.com/authorize?${querystring.stringify({
         response_type: 'code',
         client_id,
@@ -244,6 +244,85 @@ app.get('/logout', (req, res) => {
 
     res.json({ message: 'Logout successful' });
 });
+
+app.get('/spotify-playlists', checkTokenValidity, async (req, res) => {
+    const access_token = req.cookies.spotify_access_token;
+
+    try {
+        const spotifyResponse = await axios.get('https://api.spotify.com/v1/me/playlists', {
+            headers: { Authorization: `Bearer ${access_token}` },
+        });
+
+        res.json(spotifyResponse.data.items); // Send playlists
+    } catch (error) {
+        console.error('Error fetching playlists from Spotify:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching playlists from Spotify';
+        res.status(status).json({ error: errorMessage });
+    }
+});
+
+app.get('/spotify-following', checkTokenValidity, async (req, res) => {
+    const access_token = req.cookies.spotify_access_token;
+
+    try {
+        // Fetch the list of artists the user is following
+        const spotifyResponse = await axios.get('https://api.spotify.com/v1/me/following?type=artist', {
+            headers: { Authorization: `Bearer ${access_token}` },
+        });
+
+        // The response contains an array of artists the user follows, we return the count
+        const followingCount = spotifyResponse.data.artists.items.length;
+
+        res.json({ followingCount });
+    } catch (error) {
+        console.error('Error fetching followed artists:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching followed artists';
+        res.status(status).json({ error: errorMessage });
+    }
+});
+
+// Route to get the user's top artist
+app.get('/spotify-top-artist', checkTokenValidity, async (req, res) => {
+    const access_token = req.cookies.spotify_access_token;
+
+    try {
+        const response = await axios.get('https://api.spotify.com/v1/me/top/artists?limit=1&time_range=long_term', {
+            headers: { Authorization: `Bearer ${access_token}` },
+        });
+
+        res.json(response.data.items[0]); // Send the top artist
+    } catch (error) {
+        console.error('Error fetching top artist from Spotify:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching top artist from Spotify';
+        res.status(status).json({ error: errorMessage });
+    }
+});
+
+// Route to get the user's top track
+app.get('/spotify-top-track', checkTokenValidity, async (req, res) => {
+    const access_token = req.cookies.spotify_access_token;
+
+    try {
+        const response = await axios.get('https://api.spotify.com/v1/me/top/tracks?limit=1&time_range=long_term', {
+            headers: { Authorization: `Bearer ${access_token}` },
+        });
+
+        res.json(response.data.items[0]); // Send the top track
+    } catch (error) {
+        console.error('Error fetching top track from Spotify:', error.response ? error.response.data : error.message);
+
+        const status = error.response?.status || 500;
+        const errorMessage = error.response?.data?.error?.message || 'Error fetching top track from Spotify';
+        res.status(status).json({ error: errorMessage });
+    }
+});
+
 
 // Start the server
 app.listen(5000, () => {

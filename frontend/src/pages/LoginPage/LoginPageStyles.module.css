@@ -52,6 +52,30 @@
     box-shadow: 0 5px 15px rgba(29, 185, 84, 0.5);
 }
 
+.notice {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.link {
+    color: #1db954;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 40px;
+    margin-bottom: -20px;
+    color: var(--subtext-color);
+}
+
 @media (max-width: 768px) {
     .loginBox {
         width: calc(100% - 40px);
@@ -74,5 +98,9 @@
 
     .logo {
         width: 100px;
+    }
+
+    .copyright {
+        margin-bottom: 0;
     }
 }

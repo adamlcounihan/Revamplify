@@ -9,6 +9,9 @@ const LoginPage = () => {
         window.location.href = `${backendUrl}/login`;
     };
 
+    const currentYear = new Date().getFullYear();
+    const creationYear = 2024;
+
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginBox}>
@@ -18,6 +21,18 @@ const LoginPage = () => {
                 <button className={styles.loginButton} onClick={handleLogin}>
                     Log In with Spotify
                 </button>
+                <p className={styles.notice}>
+                    By logging in, you agree to our{' '}
+                    <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.link}>Terms and Conditions</a> and{' '}
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.link}>Privacy Policy</a>.
+                </p>
+
+                <section className={styles.copyright}>
+                    <p>
+                        &copy; {creationYear}{currentYear > creationYear ? `–${currentYear}` : ''} Adam Counihan <br />
+                        All Rights Reserved
+                    </p>
+                </section>
             </div>
         </div>
     );

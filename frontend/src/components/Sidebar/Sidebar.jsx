@@ -1,15 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './SidebarStyles.module.css';
 import { MdHome, MdHistory, MdOutlinePlaylistPlay, MdOutlinePersonOutline, MdAlbum, MdFavoriteBorder,
     MdOutlinePodcasts, MdOutlineMenuBook, MdOutlineNewReleases, MdInsertChartOutlined, MdOutlineMusicNote,
     MdOutlineSettings, MdHelpOutline, MdOutlineLineWeight} from "react-icons/md";
+import axios from 'axios';
 
 const Sidebar = () => {
     const [isPlaylistsOpen, setPlaylistsOpen] = useState(false);
+    const [playlists, setPlaylists] = useState([]); // State to hold the playlists
 
     const togglePlaylists = () => {
         setPlaylistsOpen(!isPlaylistsOpen);
     };
+
+    // Fetch playlists when the component mounts
+    useEffect(() => {
+        const fetchPlaylists = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/spotify-playlists', { withCredentials: true });
+                setPlaylists(response.data); // Set the fetched playlists to state
+            } catch (error) {
+                console.error('Error fetching playlists:', error);
+            }
+        };
+
+        fetchPlaylists();
+    }, []); // Empty dependency array ensures this runs once when the component mounts
 
     return (
         <aside className={styles.sidebar}>
@@ -26,26 +42,16 @@ const Sidebar = () => {
                     </li>
                     {isPlaylistsOpen && (
                         <ul className={styles.submenu}>
-                            <li>
-                                <div>2000s Mix</div>
-                                <div className={styles.playlistDescription}>by Spotify</div>
-                            </li>
-                            <li>
-                                <div>Your Top Songs 2023</div>
-                                <div className={styles.playlistDescription}>by Spotify</div>
-                            </li>
-                            <li>
-                                <div>Folk &amp; Acoustic Mix</div>
-                                <div className={styles.playlistDescription}>by Adam</div>
-                            </li>
-                            <li>
-                                <div>Happy Mix</div>
-                                <div className={styles.playlistDescription}>by Spotify</div>
-                            </li>
-                            <li>
-                                <div>Driving</div>
-                                <div className={styles.playlistDescription}>by John Smith</div>
-                            </li>
+                            {playlists && playlists.length > 0 ? (
+                                playlists.map((playlist) => (
+                                    <li key={playlist.id}>
+                                        <div>{playlist.name}</div>
+                                        <div className={styles.playlistDescription}>by {playlist.owner.display_name}</div>
+                                    </li>
+                                ))
+                            ) : (
+                                <li>No playlists found</li> // Handle case when no playlists are fetched
+                            )}
                         </ul>
                     )}
                     <li><MdOutlinePersonOutline className={styles.icon}/>Artists</li>
