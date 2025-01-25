@@ -6,8 +6,14 @@ const creationYear = 2024;
 const Terms = () => {
     return (
         <div className={styles.termsContainer}>
+            <div className={styles.homeLink}>
+                <a href="/" className={styles.homeAnchor}>
+                    <img src="/logo.png" alt="Revamplify Logo" className={styles.logo}/>
+                    <span className={styles.homeTitle}>Revamplify</span>
+                </a>
+            </div>
             <h1 className={styles.title}>Terms and Conditions</h1>
-            <p className={styles.date}>Last Updated: 3rd January 2025</p>
+            <p className={styles.date}>Terms Last Updated: 3rd January 2025</p>
             <div className={styles.content}>
                 <h2 className={styles.sectionTitle}>1. Introduction</h2>
                 <p>
