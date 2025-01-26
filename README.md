@@ -12,6 +12,17 @@ Revamplify is a personal project designed to experiment with user interface (UI)
 - **UI/UX Redesign**: A redesigned interface focused on improving navigation and visual appeal.
 - **Music Playback UI**: The UI for music playback was designed but never fully implemented.
 
+### Screenshots
+
+#### Login Page
+![Login Page](screenshots/login.png)
+
+#### Desktop View
+![Desktop View](screenshots/desktop.png)
+
+#### Mobile View
+![Mobile View](screenshots/mobile.png)
+
 ## Disclaimer
 
 This project is an independent, personal work and is **not affiliated with or endorsed by Spotify, Inc.** The design and user interface elements used in this project are original and do not incorporate any proprietary assets, trademarks, or logos owned by Spotify, Inc.
